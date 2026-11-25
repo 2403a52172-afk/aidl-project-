@@ -1,0 +1,19 @@
+{
+    "target_sr": 16000,
+    "target_duration": 4.0,
+    "target_samples": 64000,
+    "n_mels": 128,
+    "n_fft": 1024,
+    "hop_length": 500,
+    "target_frames": 128,
+    "class_mapping": {
+        "0": "REAL",
+        "1": "FAKE"
+    },
+    "model_architecture": "DeepfakeVoiceCNN",
+    "best_epoch": 4,
+    "best_val_loss": 0.1913,
+    "best_val_acc": 0.9444,
+    "dataset_source": "Hugging Face authentic human speech vs ElevenLabs/HiFi-GAN/Speechify deepfakes",
+    "trained_at": "2026-11-21T14:30:52.439035"
+}

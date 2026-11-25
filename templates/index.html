@@ -1,0 +1,179 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard | Deepfake Voice Detection{% endblock %}
+
+{% block content %}
+<div class="container py-3">
+
+    <!-- Hero Section -->
+    <div class="text-center py-4">
+        <div class="d-inline-flex align-items-center gap-2 px-3 py-1 rounded-pill mb-3" style="background: rgba(139, 92, 246, 0.12); border: 1px solid rgba(139, 92, 246, 0.3);">
+            <i class="bi bi-shield-shaded text-info"></i>
+            <span class="small fw-semibold" style="color: #c084fc;">AIDL Deep Learning Security Platform</span>
+        </div>
+        <h1 class="hero-title">AI-Powered Deepfake Voice Detection</h1>
+        <p class="hero-subtitle">
+            Detect synthesized and AI-cloned audio recordings using high-resolution Mel-Spectrogram 
+            signal processing and PyTorch 2D Convolutional Neural Networks.
+        </p>
+
+        <!-- Quick Metrics Row -->
+        <div class="row g-3 justify-content-center max-w-lg mb-5">
+            <div class="col-6 col-md-3">
+                <div class="p-3 rounded-3" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.15);">
+                    <div class="text-secondary small fw-medium">Test Accuracy</div>
+                    <div class="fs-4 fw-bold text-success">{{ eval_stats.test_accuracy_pct }}%</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-3 rounded-3" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.15);">
+                    <div class="text-secondary small fw-medium">ROC-AUC</div>
+                    <div class="fs-4 fw-bold" style="color: #38bdf8;">{{ eval_stats.roc_auc }}</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-3 rounded-3" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.15);">
+                    <div class="text-secondary small fw-medium">Model Architecture</div>
+                    <div class="fs-4 fw-bold" style="color: #c084fc;">4-Block CNN</div>
+                </div>
+            </div>
+            <div class="col-6 col-md-3">
+                <div class="p-3 rounded-3" style="background: rgba(15, 23, 42, 0.6); border: 1px solid rgba(148, 163, 184, 0.15);">
+                    <div class="text-secondary small fw-medium">Detection Modes</div>
+                    <div class="fs-4 fw-bold text-warning">Dual Mode</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Two Major Detection Cards -->
+    <div class="row g-4 mb-5">
+        <!-- Feature 1: Upload Audio Detection -->
+        <div class="col-md-6">
+            <div class="glass-card h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="rounded-3 p-3" style="background: rgba(139, 92, 246, 0.15); color: #c084fc;">
+                            <i class="bi bi-cloud-arrow-up-fill fs-3"></i>
+                        </div>
+                        <span class="badge" style="background: rgba(139, 92, 246, 0.2); color: #c084fc; border: 1px solid rgba(139, 92, 246, 0.4);">
+                            Mode 1: File Analysis
+                        </span>
+                    </div>
+                    <h3 class="fw-bold text-white mb-2">Upload Audio Detection</h3>
+                    <p class="text-secondary mb-4">
+                        Upload pre-recorded audio files in WAV, MP3, FLAC, or OGG formats. Inspect files with drag-and-drop convenience, audio waveform verification, and instant deep learning forensic classification.
+                    </p>
+                    <ul class="list-unstyled text-secondary small mb-4">
+                        <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i>Multi-format support (WAV, MP3, FLAC, OGG)</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i>Automated resampling to 16 kHz mono</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i>Pre-loaded benchmark samples available</li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="{{ url_for('upload_page') }}" class="btn btn-cyber-primary w-100 justify-content-center py-3">
+                        <i class="bi bi-arrow-right-circle-fill fs-5"></i>
+                        <span>Launch Upload Detection</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature 2: Live Microphone Voice Detection -->
+        <div class="col-md-6">
+            <div class="glass-card h-100 d-flex flex-column justify-content-between">
+                <div>
+                    <div class="d-flex align-items-center justify-content-between mb-3">
+                        <div class="rounded-3 p-3" style="background: rgba(6, 182, 212, 0.15); color: #38bdf8;">
+                            <i class="bi bi-mic-fill fs-3"></i>
+                        </div>
+                        <span class="badge" style="background: rgba(6, 182, 212, 0.2); color: #38bdf8; border: 1px solid rgba(6, 182, 212, 0.4);">
+                            Mode 2: Real-Time Capture
+                        </span>
+                    </div>
+                    <h3 class="fw-bold text-white mb-2">Live Microphone Detection</h3>
+                    <p class="text-secondary mb-4">
+                        Speak directly into your computer or laptop microphone. Capture authentic voice audio with animated real-time oscilloscope waveforms, playback controls, and client-side PCM 16-bit encoding.
+                    </p>
+                    <ul class="list-unstyled text-secondary small mb-4">
+                        <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i>Web Audio API live oscilloscope visualizer</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i>Pause, resume, and re-record controls</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle text-info me-2"></i>Runs the identical CNN model as file uploads</li>
+                    </ul>
+                </div>
+                <div>
+                    <a href="{{ url_for('live_page') }}" class="btn btn-cyber-cyan w-100 justify-content-center py-3">
+                        <i class="bi bi-record-circle-fill fs-5"></i>
+                        <span>Launch Live Microphone</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- How It Works Section -->
+    <div class="glass-card glass-card-static mb-5">
+        <div class="text-center mb-4">
+            <h3 class="fw-bold text-white">How the Deepfake Detection Pipeline Works</h3>
+            <p class="text-secondary small">End-to-end mathematical audio processing and deep neural network inference</p>
+        </div>
+
+        <div class="row g-4 text-center">
+            <div class="col-md-3">
+                <div class="p-3 rounded-4" style="background: rgba(15, 23, 42, 0.5); border: 1px solid #1e293b;">
+                    <div class="fs-1 text-info mb-2"><i class="bi bi-soundwave"></i></div>
+                    <h5 class="fw-bold text-white">1. Audio Normalization</h5>
+                    <p class="text-secondary small mb-0">Audio is standardized to 16 kHz mono, peak normalized, and framed to 4.0 seconds (64,000 samples).</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 rounded-4" style="background: rgba(15, 23, 42, 0.5); border: 1px solid #1e293b;">
+                    <div class="fs-1 text-primary mb-2"><i class="bi bi-reception-4"></i></div>
+                    <h5 class="fw-bold text-white">2. Log Mel-Spectrogram</h5>
+                    <p class="text-secondary small mb-0">Computes 128 Mel frequency bins with FFT window 1024 to convert audio into a 128x128 2D spatio-temporal map.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 rounded-4" style="background: rgba(15, 23, 42, 0.5); border: 1px solid #1e293b;">
+                    <div class="fs-1" style="color: #c084fc;"><i class="bi bi-diagram-3"></i></div>
+                    <h5 class="fw-bold text-white">3. 2D CNN Architecture</h5>
+                    <p class="text-secondary small mb-0">4 convolutional blocks with BatchNorm, ReLU, and Dropout extract neural vocoder phase and harmonic anomalies.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="p-3 rounded-4" style="background: rgba(15, 23, 42, 0.5); border: 1px solid #1e293b;">
+                    <div class="fs-1 text-success mb-2"><i class="bi bi-shield-check"></i></div>
+                    <h5 class="fw-bold text-white">4. Forensic Verdict</h5>
+                    <p class="text-secondary small mb-0">Softmax outputs REAL vs FAKE probabilities, confidence scores, and an audit report with spectral visuals.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Technology Stack Badges -->
+    <div class="glass-card glass-card-static text-center">
+        <h5 class="fw-bold text-white mb-3">Academic & Engineering Technology Stack</h5>
+        <div class="d-flex flex-wrap justify-content-center gap-2">
+            <span class="badge py-2 px-3" style="background: #1e293b; color: #f8fafc; border: 1px solid #334155;">
+                <i class="bi bi-fire text-danger me-1"></i> PyTorch 2.0+
+            </span>
+            <span class="badge py-2 px-3" style="background: #1e293b; color: #f8fafc; border: 1px solid #334155;">
+                <i class="bi bi-soundwave text-info me-1"></i> Librosa Audio
+            </span>
+            <span class="badge py-2 px-3" style="background: #1e293b; color: #f8fafc; border: 1px solid #334155;">
+                <i class="bi bi-file-earmark-music text-primary me-1"></i> SoundFile
+            </span>
+            <span class="badge py-2 px-3" style="background: #1e293b; color: #f8fafc; border: 1px solid #334155;">
+                <i class="bi bi-server text-success me-1"></i> Flask Backend
+            </span>
+            <span class="badge py-2 px-3" style="background: #1e293b; color: #f8fafc; border: 1px solid #334155;">
+                <i class="bi bi-file-earmark-pdf text-warning me-1"></i> ReportLab Forensic PDF
+            </span>
+            <span class="badge py-2 px-3" style="background: #1e293b; color: #f8fafc; border: 1px solid #334155;">
+                <i class="bi bi-broadcast text-info me-1"></i> Web Audio API
+            </span>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

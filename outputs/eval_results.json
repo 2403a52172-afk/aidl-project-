@@ -1,0 +1,20 @@
+{
+    "test_accuracy": 0.9444,
+    "test_precision": 0.9,
+    "test_recall": 1.0,
+    "test_f1": 0.9474,
+    "roc_auc": 0.9691,
+    "confusion_matrix": [
+        [
+            16,
+            2
+        ],
+        [
+            0,
+            18
+        ]
+    ],
+    "total_test_samples": 36,
+    "elapsed_training_sec": 77.4,
+    "evaluation_timestamp": "2026-11-21T14:31:44.702011"
+}
